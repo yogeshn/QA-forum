@@ -1,17 +1,16 @@
 {
-  "name": "programming-forum",
+  "name": "conduit-node",
   "version": "1.0.0",
-  "description": "programming-forum",
+  "description": "conduit on node",
   "main": "app.js",
   "scripts": {
-   
-     "start": "node ./app.js",
-   "dev": "nodemon ./app.js",
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-"repository": {
+  "repository": {
     "type": "git",
-    "url": "git+https://github.com/gothinkster/productionready-node-api.git"
+    "url": "git+https://github.com/yogeshn/QA-forum.git"
   },
   "license": "ISC",
   "dependencies": {

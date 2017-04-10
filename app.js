@@ -9,7 +9,6 @@ var fs = require('fs'),
     passport = require('passport'),
     errorhandler = require('errorhandler'),
     mongoose = require('mongoose');
-    
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -35,11 +34,13 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/conduit');
+  mongoose.connect('mongodb://localhost/QAforum');
   mongoose.set('debug', true);
 }
-require('./config/passport');
+
 require('./models/User');
+require('./config/passport');
+
 app.use(require('./routes'));
 
 /// catch 404 and forward to error handler
