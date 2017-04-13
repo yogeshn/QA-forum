@@ -49,8 +49,7 @@ UserSchema.methods.toAuthJSON = function(){
     token: this.generateJWT()
   };
 };
-
-UserSchema.methods.toProfileJSONFor = function(){
+UserSchema.methods.toProfileJSONFor = function(user){
   return {
     username: this.username,
     bio: this.bio,
