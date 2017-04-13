@@ -12,7 +12,10 @@ var UserSchema = new mongoose.Schema({
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   hash: String,
-  salt: String
+  salt: String,
+  role: String,
+  organisation: String,
+  Location: String
 }, {timestamps: true});
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
@@ -44,6 +47,19 @@ UserSchema.methods.toAuthJSON = function(){
     username: this.username,
     email: this.email,
     token: this.generateJWT()
+  };
+};
+
+UserSchema.methods.toProfileJSONFor = function(){
+  return {
+    username: this.username,
+    bio: this.bio,
+    image: this.image || 'https://static.productionready.io/images/smiley-cyrus.jpg',
+    following:  false , // we'll implement following functionality in a few chapters :)
+    organisation:this.organisation,
+    role: this.role,
+    Location: this.Location
+
   };
 };
 
