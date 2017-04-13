@@ -1,7 +1,7 @@
 {
-  "name": "conduit-node",
+  "name": "node-backend",
   "version": "1.0.0",
-  "description": "conduit on node",
+  "description": "backend for programming forum",
   "main": "app.js",
   "scripts": {
     "start": "node ./app.js",
