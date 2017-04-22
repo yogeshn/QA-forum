@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
   salt: String,
   role: String,
   organisation: String,
-  Location: String
+  location: String
 }, {timestamps: true});
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
@@ -57,7 +57,7 @@ UserSchema.methods.toProfileJSONFor = function(user){
     following:  false , // we'll implement following functionality in a few chapters :)
     organisation:this.organisation,
     role: this.role,
-    Location: this.Location
+    location: this.location
 
   };
 };
