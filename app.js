@@ -39,7 +39,7 @@ if(isProduction){
 }
 
 require('./models/User');
-require('./models/Article');
+require('./models/Articles');
 require('./config/passport');
 
 app.use(require('./routes'));
