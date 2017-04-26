@@ -113,4 +113,28 @@ router.delete('/:article/favorite', auth.required, function(req, res, next) {
   }).catch(next);
 });
 
+
+
+
+router.post('/:article/comments', auth.required, function(req, res, next) {
+  User.findById(req.payload.id).then(function(user){
+    if(!user){ return res.sendStatus(401); }
+
+    var comment = new Comment(req.body.comment);
+    comment.article = req.article;
+    comment.author = user;
+
+    return comment.save().then(function(){
+      req.article.comments.push(comment);
+
+      return req.article.save().then(function(article) {
+        res.json({comment: comment.toJSONFor(user)});
+      });
+    });
+  }).catch(next);
+});
+
+
+
+
 module.exports = router;
