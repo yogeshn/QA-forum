@@ -22,7 +22,7 @@ router.post('/', auth.required, function(req, res, next) {
 
 
 
-router.param('article', function(req, res, next, slug) {
+router.param('articles', function(req, res, next, slug) {
   Article.findOne({ slug: slug})
     .populate('author')
     .then(function (article) {
@@ -34,7 +34,7 @@ router.param('article', function(req, res, next, slug) {
     }).catch(next);
 });
 
-router.get('/:article', auth.optional, function(req, res, next) {
+router.get('/:articles', auth.optional, function(req, res, next) {
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
     req.article.populate('author').execPopulate()
@@ -46,7 +46,7 @@ router.get('/:article', auth.optional, function(req, res, next) {
 });
 
 
-router.put('/:article', auth.required, function(req, res, next) {
+router.put('/:articles', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(user){
     if(req.article.author._id.toString() === req.payload.id.toString()){
       if(typeof req.body.article.title !== 'undefined'){
@@ -71,7 +71,7 @@ router.put('/:article', auth.required, function(req, res, next) {
 });
 
 
-router.delete('/:article', auth.required, function(req, res, next) {
+router.delete('/:articles', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(){
     if(req.article.author.toString() === req.payload.id.toString()){
       return req.article.remove().then(function(){
